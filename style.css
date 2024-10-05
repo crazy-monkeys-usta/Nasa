@@ -1,0 +1,191 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap');
+
+:root {
+    --color-lateral-bar: rgb(250, 250, 250);
+    --color-text: rgb(0, 0, 0);
+    --color-text-menu: rgb(255, 255, 255);
+    --color-buttom: rgb(0, 0, 0);
+    --color-buttom-menu: rgb(255, 255, 255);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Playwrite DE Grund", cursive;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+html, body {
+    height: 100%; 
+}
+
+
+
+body {
+    background-color: black;
+    display: flex;
+    overflow: hidden;
+    margin: 0;
+}
+
+
+.lateral-bar {
+    width: 250px;
+    height: 100vh;
+    padding: 20px 15px;
+    background-color: var(--color-lateral-bar);
+    transition: 0.5s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.min-lateral-bar {
+    width: 80px;
+}
+
+.lateral-bar .menu {
+    display: flex;
+    align-items: center;
+}
+
+.lateral-bar .menu ion-icon {
+    min-width: 50px;
+    font-size: 45px;
+}
+
+.lateral-bar .menu span {
+    font-size: 25px;
+    margin-left: 15px;
+    transition: opacity 0.5s ease;
+}
+
+.lateral-bar .menu span.hide {
+    opacity: 0;
+}
+.lateral-bar .home {
+    display: flex;
+    align-items: center;
+}
+
+.lateral-bar .home ion-icon {
+    min-width: 50px;
+    font-size: 45px;
+
+}
+
+.lateral-bar .home span {
+    font-size: 25px;
+    margin-left: 15px;
+    transition: opacity 0.5s ease;
+}
+
+.lateral-bar .home span.hide {
+    opacity: 0;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 250px; 
+    width: calc(100% - 250px); 
+    height: 100vh;
+    z-index: 0;  
+}
+
+.min-lateral-bar + canvas {
+    left: 80px; 
+    width: calc(100% - 80px);
+}
+
+.lateral-bar .search {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: var(--color-lateral-bar);
+    border-radius: 10px;
+    position: relative;
+}
+
+.lateral-bar .search-icon {
+    font-size: 50px;
+    margin-right: 10px; 
+}
+
+.lateral-bar .search-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    background-color: transparent;
+    color: var(--color-text);
+    transition: opacity 0.5s ease;
+}
+
+.lateral-bar .search input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    background-color: transparent;
+    color: var(--color-text);
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.lateral-bar .search input.hide{
+
+    opacity: 0;
+}
+
+
+
+.lateral-bar .exten-bar {
+    display: flex;
+    align-items: center;
+}
+
+.lateral-bar .exten-bar ion-icon {
+    min-width: 50px;
+    font-size: 45px;
+}
+
+.lateral-bar .exten-bar span {
+    font-size: 25px;
+    margin-left: 15px;
+    transition: opacity 0.5s ease;
+}
+
+.lateral-bar .exten-bar span.hide {
+    opacity: 0;
+}
+.lateral-bar .sub-menu {
+    display: none;
+    top: 0; 
+    width: 250px;
+    height: 100vh;
+    position: absolute;
+    padding: 20px 15px;
+    left: 250px;
+    background-color: var(--color-lateral-bar);
+    border-radius: 10px;
+    margin-top: 10px; 
+    padding: 10px; 
+    z-index: 2;
+    overflow-y: auto;
+    transition: 0,5s ease; 
+    
+}
+
+.lateral-bar .sub-menu.show {
+    display: block; 
+}
+
+.lateral-bar .min_sub-menu{
+    left: 80px;
+
+}
