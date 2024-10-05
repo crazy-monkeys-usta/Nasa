@@ -42,6 +42,19 @@ body {
     position: relative;
     z-index: 1;
 }
+.lateral-bar .logo {
+    display: block; 
+    margin: 20px auto 0; 
+    width: 200px; 
+    height: auto;
+    opacity: 1;
+    transition: width 0.5s ease, opacity 0.5s ease;
+    position: relative;
+}
+.min-lateral-bar .logo {
+    width: 0px; 
+    opacity: 0; 
+}
 
 .min-lateral-bar {
     width: 80px;
@@ -189,3 +202,21 @@ canvas {
     left: 80px;
 
 }
+
+.sign{
+    top: 0; 
+    width: 250px;
+    height: 50px;
+    position: absolute;
+    padding: 20px 15px;
+    left: 699px;
+    background-color: var(--color-lateral-bar);
+    border-radius: 10px;
+    margin-top: 10px; 
+    padding: 10px; 
+    z-index: 1;
+    transition: height 0.5s ease, opacity 0.5s ease; 
+    opacity: 1;   
+}
+
+
