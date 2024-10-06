@@ -219,4 +219,99 @@ canvas {
     opacity: 1;   
 }
 
+.exoplanets{
+    top: 0; 
+    width: 65px;
+    height: 50px;
+    position: fixed;
+    padding: 20px 15px;
+    left: 950px;
+    background-color: var(--color-lateral-bar);
+    border-radius: 10px;
+    margin-top: 10px; 
+    padding: 10px; 
+    z-index: 1;
+
+}
+.exoplanets {
+    top: 0; 
+    width: 260px;
+    height: 50px;
+    position: fixed;
+    padding: 20px 15px;
+    left: 950px;
+    background-color: var(--color-lateral-bar);
+    border-radius: 10px;
+    margin-top: 10px; 
+    padding: 10px; 
+    z-index: 1;
+}
+
+.exoplanets ion-icon {
+    min-width: 45px;
+    font-size: 35px;
+}
+
+.exoplanets span {
+    font-size: 25px;
+    margin-left: 15px;
+}
+
+
+
+.exoplanets .exo-sub-menu {
+    display: none;
+    width: 250px;
+    height: 200px;
+    position: absolute;
+    padding: 20px 15px;
+    left: 0px; 
+    top: 50px; 
+    background-color: var(--color-lateral-bar);
+    border-radius: 10px;
+    margin-top: 10px; 
+    z-index: 2;
+    overflow-y: auto;
+    transition: 0.5s ease; 
+}
+
+.exoplanets .exo-sub-menu.show {
+    display: block;
+}
+.info_screen { 
+    width: 800px;
+    height: 400px;
+    position: fixed;
+    padding: 20px 15px;
+    left: 60%; 
+    top: 50%; 
+    transform: translate(-50%, -50%); 
+    background-color: var(--color-lateral-bar);
+    border-radius: 10px;
+    z-index: 1;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease; 
+}
+.info_screen ion-icon {
+    position: absolute;
+    min-width: 45px;
+    font-size: 35px;
+    left: 710px;
+}
+
+.info_screen.show{
+    display: block;
+    opacity: 1;
+}
+
+.info_screen .screen-left {
+    flex: 1; 
+    padding: 10px; 
+    border-right: 1px solid #ccc; 
+    overflow-y: auto; 
+    max-height: 300px;
+}
+
+
 

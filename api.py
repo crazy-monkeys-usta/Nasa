@@ -31,7 +31,8 @@ def get_hostname_or_planet_data():
         'pl_rade',         
         'pl_bmasse',       
         'pl_orbeccen',     
-        'pl_eqt'           
+        'pl_eqt',
+        'st_teff'           
     ]].reset_index(drop=True)
 
     solar_system_data = solar_system_data.fillna("data not found")
@@ -54,7 +55,8 @@ def get_solar_system_data():
         'pl_rade',         
         'pl_bmasse',       
         'pl_orbeccen',     
-        'pl_eqt'           
+        'pl_eqt',
+        'st_teff'           
     ]].reset_index(drop=True) 
 
     solar_system_data = solar_system_data.fillna("data not found")
@@ -78,12 +80,51 @@ def get_solar_system_data_by_hostname(hostname):
         'pl_rade',         
         'pl_bmasse',       
         'pl_orbeccen',     
-        'pl_eqt'           
+        'pl_eqt',
+        'st_teff'           
     ]].reset_index(drop=True)
 
     solar_system_data = solar_system_data.fillna("data not found")
 
     return jsonify(solar_system_data.to_dict(orient='records'))
+
+@app.route('/api/planet-data/<string:pl_name>', methods=['GET'])
+def get_planet_data_by_name(pl_name):
+    look = df.loc[df['pl_name'] == pl_name]
+
+    if look.empty:
+        return jsonify({"error": "Planet not found"}), 404
+
+    column_order = [
+        'pl_name',          # Planet name
+        'hostname',         # Host star name
+        'sy_snum',          # Number of stars in the system
+        'sy_pnum',          # Number of planets in the system
+        'discoverymethod',  # Discovery method
+        'disc_year',        # Year of discovery
+        'pl_orbsmax',       # Orbital semi-major axis
+        'pl_orbper',        # Orbital period
+        'pl_rade',          # Planet radius
+        'pl_bmasse',        # Planet mass
+        'pl_orbeccen',      # Orbital eccentricity
+        'pl_eqt',           # Equilibrium temperature
+        'st_teff',          # Stellar effective temperature
+        'st_mass',          # Stellar mass
+        'st_rad',           # Stellar radius
+        'sy_dist'           # Distance to the system
+    ]
+    planet_data = look[column_order].reset_index(drop=True)
+
+    planet_data = planet_data.fillna("data not found")
+
+    result = planet_data.to_dict(orient='records')
+
+    from collections import OrderedDict
+    ordered_result = [OrderedDict((key, item[key]) for key in column_order) for item in result]
+
+    return jsonify(ordered_result)
+
+
 
 
 
