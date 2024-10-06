@@ -4,48 +4,45 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
+// Initialize OrbitControls
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; // an animation loop is required when either damping or auto-rotation are enabled
+controls.dampingFactor = 0.25; // an easing factor to control the damping
+controls.screenSpacePanning = false; // prevents panning up and down
 
 const starGeometry = new THREE.SphereGeometry(1, 32, 32);
 const starMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
 const star = new THREE.Mesh(starGeometry, starMaterial);
 scene.add(star);
 
-
 const light = new THREE.PointLight(0xffffff, 1.5, 100);
 light.position.set(0, 0, 0);
 scene.add(light);
 
-
 camera.position.set(5, 5, 15);
 camera.lookAt(2, -3, 0);
 
-
 const exoplanets = [];
-
 
 function createExoplanet(distance, size, color, speed) {
     const planetGeometry = new THREE.SphereGeometry(size, 32, 32);
     const planetMaterial = new THREE.MeshBasicMaterial({ color: color });
     const planet = new THREE.Mesh(planetGeometry, planetMaterial);
 
-
     const orbit = new THREE.CircleGeometry(distance, 64);
     const orbitMaterial = new THREE.LineBasicMaterial({ color: 0x888888 });
     const orbitMesh = new THREE.LineLoop(orbit, orbitMaterial);
     orbitMesh.rotation.x = Math.PI / 2;
-
 
     scene.add(orbitMesh);
     planet.position.x = distance;  
     planet.position.z = 0; 
     scene.add(planet);
 
-
     exoplanets.push({ planet: planet, orbit: orbitMesh, speed: speed, angle: 0, distance: distance });
 }
 
 function loadDefaultSystem() {
-
     exoplanets.forEach(exoplanet => {
         scene.remove(exoplanet.planet);
         scene.remove(exoplanet.orbit);
@@ -72,18 +69,17 @@ function animate() {
     requestAnimationFrame(animate);
     
     exoplanets.forEach(exoplanet => {
-
         exoplanet.angle += exoplanet.speed; 
         exoplanet.planet.position.x = Math.cos(exoplanet.angle) * exoplanet.distance; 
         exoplanet.planet.position.z = Math.sin(exoplanet.angle) * exoplanet.distance; 
     });
 
+    controls.update(); // Update the controls for smooth movement
     renderer.render(scene, camera);
 }
 
 loadDefaultSystem();
 animate();
-
 
 window.addEventListener('resize', () => {
     const width = window.innerWidth;
@@ -94,7 +90,6 @@ window.addEventListener('resize', () => {
 });
 
 function plotSolarSystemFromData(data) {
-
     exoplanets.forEach(exoplanet => {
         scene.remove(exoplanet.planet);
         scene.remove(exoplanet.orbit);
